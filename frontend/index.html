@@ -1,0 +1,25 @@
+<html>
+	<head>
+		<title>My Angular App!</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+		<script src="app.js"></script>
+	</head>
+	<body ng-app="orderTool" ng-controller="MainCtrl">
+		<div ng-repeat="order in orders">
+			{{order.name}}, type : {{order.foodType}}, drink : {{order.hasDrink ? 'Yes' : 'No'}}, salad : {{order.hasSalad ? 'Yes' : 'No'}}, cost : {{order.cost}}
+		</div>
+		<form ng-submit="addOrder()">
+			<select id="country" ng-model="selectedFood" ng-options="ftype.name for ftype in foodTypes">
+     			<option value="">Choose</option>
+   			</select>
+   			<input type="text" ng-model="title"></input>
+			<input type="checkbox" ng-model="hasSalad" id = "opt1"></input>
+			<label for="opt1"> Add Salad </label>
+			<input type="checkbox" ng-model="hasDrink" id = "opt2"></input>
+			<label for="opt2"> Add Drink </label>
+			<button type="submit">Post</button>
+		</form>
+		<p ng-bind="ResponseDetails"></p>
+   			 {{ResponseDetails}}
+	</body>
+</html>
