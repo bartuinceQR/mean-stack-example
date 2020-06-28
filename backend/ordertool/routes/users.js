@@ -9,7 +9,15 @@ router.get('/', function(req, res, next) {
 
 router.get('/getOrders', db.getOrders);
 router.get('/foodTypes', db.getFoodTypes);
+router.get('/siteUsers', db.getUsers);
+router.get('/siteUsersGet/:id', db.getSpecificUser);
+router.get('/siteUsersOrder/:basket_id',db.getUserOrders)
+
+router.post('/siteUsers', db.createUser);
 router.post('/foodTypes', db.createFoodType);
 router.post('/createOrder', db.createOrder);
+router.post('/deleteOrder', db.deleteOrder);
+
+router.post('/makePurchase', db.makePurchase);
 
 module.exports = router;

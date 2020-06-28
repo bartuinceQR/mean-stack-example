@@ -5,8 +5,41 @@
 		<script src="app.js"></script>
 	</head>
 	<body ng-app="orderTool" ng-controller="MainCtrl">
-		<div ng-repeat="order in orders">
-			{{order.name}}, type : {{order.foodType}}, drink : {{order.hasDrink ? 'Yes' : 'No'}}, salad : {{order.hasSalad ? 'Yes' : 'No'}}, cost : {{order.cost}}
+		<form ng-submit="changeUser()">
+			<select id="user" ng-model="selectedUser" ng-options="user.name for user in users">
+     			<option value="">Choose</option>
+   			</select>
+   			<button type="submit">Change</button>
+		</form>
+		<div>
+			<h1 ng-show="currentuser"> 
+				Looking at :  {{currentuser.name}}'s Orders </br>
+				Current Balance : {{currentuser.balance}}
+			</h1>
+			<table border="1">
+				<tr>
+					<td>Order Name</td>
+					<td>Food Type</td>
+					<td>Has Drink?</td>
+					<td>Has Salad?</td>
+					<td>Quantity</td>
+					<td>Total Cost</td>
+					<td></td>
+				</tr>
+				<tr ng-repeat="order in orders">
+					<td>{{order.name}}</td>
+					<td>{{order.foodType}}</td>
+					<td>{{order.hasDrink ? 'Yes' : 'No'}}</td>
+					<td>{{order.hasSalad ? 'Yes' : 'No'}}</td>
+					<td>{{order.qty}}</td>
+					<td>{{order.cost}}</td>
+					<td><button ng-click="deleteOrder(order)">Delete</button></td>
+				</tr>
+			</table>
+			<form ng-submit="makePurchase()">
+   				<button type="submit">Buy</button>
+			</form>
+			<p ng-bind="FundDetails"></p>
 		</div>
 		<form ng-submit="addOrder()">
 			<select id="country" ng-model="selectedFood" ng-options="ftype.name for ftype in foodTypes">
@@ -17,9 +50,10 @@
 			<label for="opt1"> Add Salad </label>
 			<input type="checkbox" ng-model="hasDrink" id = "opt2"></input>
 			<label for="opt2"> Add Drink </label>
+			<input type="number" ng-model="orderQuant" id="quantity" min="1" max="3">
+			<label for="quantity">Qty.</label>
 			<button type="submit">Post</button>
 		</form>
 		<p ng-bind="ResponseDetails"></p>
-   			 {{ResponseDetails}}
 	</body>
 </html>

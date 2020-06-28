@@ -6,6 +6,7 @@ var orderSchema = mongoose.Schema({
     foodType: String,
     hasSalad: Boolean,
     hasDrink: Boolean,
+    qty: Number,
     cost: Number,
     created: { 
         type: Date,
